@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029012952) do
+ActiveRecord::Schema.define(version: 20151029022616) do
+
+  create_table "user_goals", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "integer"
+    t.string   "weight"
+    t.string   "float"
+    t.string   "height"
+    t.string   "bust_size"
+    t.string   "waist_size"
+    t.string   "hip_size"
+    t.string   "comment"
+    t.string   "string"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_logs", force: :cascade do |t|
     t.integer  "user_id"
