@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_log.user_id %>
+</p>
+
+<p>
+  <strong>Logon:</strong>
+  <%= @user_log.logon %>
+</p>
+
+<p>
+  <strong>Logoff:</strong>
+  <%= @user_log.logoff %>
+</p>
+
+<%= link_to 'Edit', edit_user_log_path(@user_log) %> |
+<%= link_to 'Back', user_logs_path %>

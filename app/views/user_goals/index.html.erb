@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing User Goals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Integer</th>
+      <th>Weight</th>
+      <th>Float</th>
+      <th>Height</th>
+      <th>Float</th>
+      <th>Bust size</th>
+      <th>Float</th>
+      <th>Waist size</th>
+      <th>Float</th>
+      <th>Hip size</th>
+      <th>Float</th>
+      <th>Comment</th>
+      <th>String</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_goals.each do |user_goal| %>
+      <tr>
+        <td><%= user_goal.user.email %></td>
+        <td><%= user_goal.integer %></td>
+        <td><%= user_goal.weight %></td>
+        <td><%= user_goal.float %></td>
+        <td><%= user_goal.height %></td>
+        <td><%= user_goal.float %></td>
+        <td><%= user_goal.bust_size %></td>
+        <td><%= user_goal.float %></td>
+        <td><%= user_goal.waist_size %></td>
+        <td><%= user_goal.float %></td>
+        <td><%= user_goal.hip_size %></td>
+        <td><%= user_goal.float %></td>
+        <td><%= user_goal.comment %></td>
+        <td><%= user_goal.string %></td>
+        <td><%= link_to 'Show', user_goal %></td>
+        <td><%= link_to 'Edit', edit_user_goal_path(user_goal) %></td>
+        <td><%= link_to 'Destroy', user_goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User goal', new_user_goal_path %>

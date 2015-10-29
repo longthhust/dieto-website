@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  integer: MyString
+  weight: MyString
+  float: MyString
+  height: MyString
+  float: MyString
+  bust_size: MyString
+  float: MyString
+  waist_size: MyString
+  float: MyString
+  hip_size: MyString
+  float: MyString
+  comment: MyString
+  string: MyString
+
+two:
+  user_id: MyString
+  integer: MyString
+  weight: MyString
+  float: MyString
+  height: MyString
+  float: MyString
+  bust_size: MyString
+  float: MyString
+  waist_size: MyString
+  float: MyString
+  hip_size: MyString
+  float: MyString
+  comment: MyString
+  string: MyString
