@@ -13,6 +13,13 @@
   <% else %>
   <%= link_to "Signin", new_user_session_path  %>
   <%= link_to "Register", new_user_registration_path %>
+  <% end %>
+  
+  <hr>
+  
+  <% flash.each do |type, message| %>
+    <strong><%= message %></strong>
+  <% end %>
 
 <%= yield %>
 
