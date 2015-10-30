@@ -1,8 +1,9 @@
-class CreateUserLogs < ActiveRecord::Migration
+class CreateUserGoals < ActiveRecord::Migration
   def change
-    create_table :user_logs do |t|
+    create_table :user_goals do |t|
       t.float :weight, null: false
       t.text :comment
+      t.date :deadline, null: false
 
       t.timestamps null: false
       

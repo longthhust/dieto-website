@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label "現在の体重"%><br>
+    <%= f.number_field :weight %>
   </div>
+  
   <div class="field">
-    <%= f.label :log_data %><br>
-    <%= f.text_field :log_data %>
+    <%= f.label "コメント"%><br>
+    <%= f.text_area :comment %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

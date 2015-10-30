@@ -26,6 +26,26 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.number_field :age %>
+  </div>
+   
+  <div class="field">
+    <%= f.label :height %><br />
+    <%= f.number_field :height, step:'any' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.number_field :weight, step:'any' %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Update" %>

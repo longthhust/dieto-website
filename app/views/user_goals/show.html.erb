@@ -1,0 +1,65 @@
+<% weight_diff = (@user_goal.weight - @user_goal.user.weight).abs %>
+<% day_diff = (@user_goal.deadline - Date.today).to_i %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>目標詳細</h1>
+
+<p>
+  <strong>ユーザー:</strong>
+  <%= @user_goal.user.name %>
+</p>
+
+<p>
+  <strong>目標:</strong>
+  <%= @user_goal.weight %> kg
+</p>
+
+<p>
+  <strong>作成された日:</strong>
+  <%= @user_goal.created_at.year%>年
+  <%= @user_goal.created_at.month%>月
+  <%= @user_goal.created_at.day%>日
+</p>
+
+<p>
+  <strong>締め切り:</strong>
+  <%= @user_goal.deadline.year%>年
+  <%= @user_goal.deadline.month%>月
+  <%= @user_goal.deadline.day%>日
+  
+</p>
+
+<p>
+  <strong>コメント:</strong>
+  <%= @user_goal.comment %>
+</p>
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+<p>
+  <strong>現在の体重:</strong>
+  <%= @user_goal.user.weight %> kg
+</p>
+
+<p>
+  <strong>目標達成まで:</strong>
+  <%= weight_diff.round(2)%> kg
+</p>
+
+<p>
+  <strong>締め切りまで:</strong>
+  <%= day_diff %> 日
+</p>
+
+<p>
+  <strong>目標達成できるように、毎週 </strong> 
+  <%= (weight_diff/day_diff*7).round(2) %> kg 
+  <strong>で頑張りましょう！</strong>
+</p>
+
+
+
+
+<%= link_to '編集', edit_user_goal_path(@user_goal) %> |
+<%= link_to '戻る', user_goals_path %>
