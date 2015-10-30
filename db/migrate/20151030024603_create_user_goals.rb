@@ -6,7 +6,6 @@ class CreateUserGoals < ActiveRecord::Migration
       t.date :deadline, null: false
 
       t.timestamps null: false
-      
       t.belongs_to :user, index: true
     end
   end
