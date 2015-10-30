@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @user_log.user_id %>
+  <strong>ユーザー:</strong>
+  <%= @user_log.user.name %>
 </p>
 
 <p>
-  <strong>Log data:</strong>
-  <%= @user_log.log_data %>
+  <strong>目標の体重:</strong>
+  <%= @user_log.weight %>
 </p>
 
-<%= link_to 'Edit', edit_user_log_path(@user_log) %> |
-<%= link_to 'Back', user_logs_path %>
+<p>
+  <strong>コメント:</strong>
+  <%= @user_log.comment %>
+</p>
+
+
+<%= link_to '編集', edit_user_log_path(@user_log) %> |
+<%= link_to '戻る', user_logs_path %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>目標一覧</h1>
+<% if @user_goals.empty? %>
+まだ作成しません
+<br>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>目標の体重</th>
+      <th>締め切り</th>
+      <th>コメント</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <%= render @user_goals %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<%= link_to '目標作成', new_user_goal_path %>

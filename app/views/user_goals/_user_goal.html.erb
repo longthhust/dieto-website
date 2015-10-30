@@ -1,0 +1,11 @@
+ <tr>
+    <td><%= user_goal.user.name %></td>
+    <td><%= user_goal.weight %></td>
+    <td><%= user_goal.deadline.strftime("%d/%m/%Y") %></td>
+    <td><%= user_goal.comment %></td>
+    <td><%= link_to '表示', user_goal %></td>
+    <% if (current_user == user_goal.user) %>
+      <td><%= link_to '編集', edit_user_goal_path(user_goal) %></td>
+      <td><%= link_to '削除', user_goal, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+    <% end %> 
+ </tr>

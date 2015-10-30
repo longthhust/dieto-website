@@ -11,14 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009093141) do
+ActiveRecord::Schema.define(version: 20151030024603) do
 
-  create_table "user_logs", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "log_data"
+  create_table "user_goals", force: :cascade do |t|
+    t.float    "weight",     null: false
+    t.text     "comment"
+    t.date     "deadline",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "user_goals", ["user_id"], name: "index_user_goals_on_user_id"
+
+  create_table "user_logs", force: :cascade do |t|
+    t.float    "weight",     null: false
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "user_logs", ["user_id"], name: "index_user_logs_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -37,6 +51,10 @@ ActiveRecord::Schema.define(version: 20151009093141) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.integer  "age"
+    t.float    "height"
+    t.float    "weight"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
