@@ -12,6 +12,7 @@
 <h3>Hello <%= current_user.email %>!</h3>
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <%= link_to "目標一覧", user_goals_path %>
+<%= link_to "TEST BUTTON", current_user %>
 
 <h3>名前: <%= current_user.name %></h3>
 <h3>年齢: <%= current_user.age %> 歳</h3>

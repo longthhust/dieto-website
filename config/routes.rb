@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   devise_for :users
+  resources :users, only: :show
+  resources :friends, only: [:create, :update, :destroy]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
