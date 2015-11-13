@@ -4,31 +4,53 @@
   <title>Workspace</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-<% if user_signed_in? %>
-<h3>Hello <%= current_user.email %>!</h3>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%= link_to "目標一覧", user_goals_path %>
-<%= link_to "TEST BUTTON", current_user %>
+  <div class="container col-md-12">
+    <%- if controller_name != 'sessions' %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Dietto-web</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "ホーム", root_path %></li>
+            <li></li>
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li><%= link_to "Hello, #{current_user.email}!", current_user %></li>
+            <li><%= link_to "目標一覧", user_goals_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+            <li><%= link_to "ユーザー登録", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <% end %>
+    <% if user_signed_in? %>
+    <h3>名前: <%= current_user.name %></h3>
+    <h3>年齢: <%= current_user.age %> 歳</h3>
+    <h3>体調: <%= current_user.height %> m</h3>
+    <h3>体重: <%= current_user.weight %> kg</h3>
+  <% end %>
+    
 
-<h3>名前: <%= current_user.name %></h3>
-<h3>年齢: <%= current_user.age %> 歳</h3>
-<h3>体調: <%= current_user.height %> m</h3>
-<h3>体重: <%= current_user.weight %> kg</h3>
-
-<% else %>
-<%= link_to "ログイン", new_user_session_path %>
-<%= link_to "ユーザー登録", new_user_registration_path %>
-<% end %>
-<hr>
 <% flash.each do |type, message| %>
   <strong><%= message %></strong>
 <% end %>
 <br>
 <%= yield %>
+  </div>
+  
 
 </body>
 </html>
