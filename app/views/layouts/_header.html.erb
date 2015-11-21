@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="<%= root_path %>">Dietto-web</a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "ホーム", root_path %></li>
+          <li></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+          <li><%= link_to "Hello, #{current_user.email}!", current_user %></li>
+          <li><%= link_to "目標一覧", user_goals_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "ユーザー登録", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+</nav>

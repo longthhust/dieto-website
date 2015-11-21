@@ -12,7 +12,7 @@ class UserGoalsController < ApplicationController
 
   # GET /user_goals/1
   # GET /user_goals/1.json
- d ef show
+  def show
   end
 
   # GET /user_goals/new

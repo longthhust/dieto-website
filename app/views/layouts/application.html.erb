@@ -9,48 +9,66 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!--echo header-->
+  <%- if controller_name != 'sessions' && controller_name != 'registrations' %>
+  <%= render "layouts/header" %>
+  <% end %>
+  
+  <!--page content-->
+  <%- if controller_name != 'sessions' && controller_name != 'registrations' && controller_name != 'passwords' && controller_name != 'confirmations' && controller_name != 'unlocks'  %>
   <div class="container col-md-12">
-    <%- if controller_name != 'sessions' %>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Dietto-web</a>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="thumbnail">
+          <img src="..." alt="...">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>...</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
         </div>
-        <div>
-          <ul class="nav navbar-nav">
-            <li><%= link_to "ホーム", root_path %></li>
-            <li></li>
-          </ul>
-          
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-            <li><%= link_to "Hello, #{current_user.email}!", current_user %></li>
-            <li><%= link_to "目標一覧", user_goals_path %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-            <% else %>
-            <li><%= link_to "ログイン", new_user_session_path %></li>
-            <li><%= link_to "ユーザー登録", new_user_registration_path %></li>
-            <% end %>
-          </ul>
+        <div class="thumbnail">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+                View Logs
+            </a>
+            <a href="#" class="list-group-item"><span class="badge">14</span>Friends</a>
+            <a href="#" class="list-group-item">Message</a>
+            <a href="#" class="list-group-item">Progress</a>
+          </div>
         </div>
       </div>
-    </nav>
-    <% end %>
-    <% if user_signed_in? %>
-    <h3>名前: <%= current_user.name %></h3>
-    <h3>年齢: <%= current_user.age %> 歳</h3>
-    <h3>体調: <%= current_user.height %> m</h3>
-    <h3>体重: <%= current_user.weight %> kg</h3>
-  <% end %>
-    
-
-<% flash.each do |type, message| %>
-  <strong><%= message %></strong>
-<% end %>
-<br>
-<%= yield %>
+      <div class="col-lg-6">
+        <div class="thumbnail"><p>For 50 years, WWF has been protecting the future of nature.
+The world's leading conservation organization,
+WWF works in 100 countries and is supported by
+1.2 million members in the United States and
+close to 5 million globally.</p></div>
+      </div>
+      <div class="col-lg-3">
+        <% if user_signed_in? %>
+        <div class="thumbnail">
+          <div class="caption">
+            <h3>User Goals</h3>
+            <p>名前: <%= current_user.name %></p>
+            <p>年齢: <%= current_user.age %> 歳</p>
+            <p>体調: <%= current_user.height %> cm</p>
+            <p>体重: <%= current_user.weight %> kg</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+        <% else %>
+          <%= render "devise/sessions/login_form" %>
+        <% end %>
+      </div>
+    </div>
   </div>
+  <% else %>
+  <%= yield %>
+  <% end %>
   
-
+  <!--echo footer-->
+  <%= render "layouts/footer"%>
+  
 </body>
 </html>
