@@ -1,0 +1,68 @@
+<div class="profile">
+	<div class="profile-sidebar">
+		<!-- SIDEBAR USERPIC -->
+		<div class="profile-userpic">
+			<!--<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">-->
+		</div>
+		<!-- END SIDEBAR USERPIC -->
+		<!-- SIDEBAR USER TITLE -->
+		<div class="profile-usertitle">
+			<div class="profile-usertitle-name">
+				<%= link_to @user.name, controller: "users", action: "show", id: @user.id  %>
+			</div>
+			<div class="profile-usertitle-job">
+				<%= @user.email  %>
+			</div>
+		</div>
+		<!-- END SIDEBAR USER TITLE -->
+		<!-- SIDEBAR BUTTONS -->
+		<% if !@is_me %>
+		<div class="row profile-userbuttons">
+			<!--<button type="button" class="btn btn-success btn-sm">Follow</button>-->
+			<div class=" col-lg-5 col-lg-offset-1">
+			    
+                <%  case @status %>
+                <%   when :nothing %>
+                    <%= form_tag('/friends', method: :post) do %>
+                        <%=  hidden_field_tag :user_id, current_user.id %>
+                        <%=  hidden_field_tag :friend_id, @user.id %>
+                        <%= submit_tag "Request", class: "btn btn-success btn-sm" %>
+                    <%    end %>
+                    <%    when :requested %>
+                    
+                    <%= form_tag "/friends/#{@friend.id}", method: :delete do %>
+                        <%= hidden_field_tag :id, @friend.id %>
+                        <%= hidden_field_tag :friend_id, @user.id %>
+                        <%= submit_tag "Remove request", class: "btn btn-success btn-sm" %>
+                    <%    end %>
+                    <%    when :be_requested %>
+                    
+                    <%= form_tag "/friends/#{@friend.id}", method: :put do %>
+                        <%= hidden_field_tag :id, @friend.id %>
+                        <%= hidden_field_tag :friend_id, @user.id %>
+                        <%= submit_tag "Accept", class: "btn btn-success btn-sm" %>
+                    <%    end %>
+                    <%= form_tag "/friends/#{@friend.id}", method: :delete do %>
+                        <%= hidden_field_tag :id, @friend.id %>
+                        <%= hidden_field_tag :friend_id, @user.id %>
+                        <%= submit_tag "Reject", class: "btn btn-success btn-sm" %>
+                    <%    end %>
+                    <%    when :be_accepted, :accepted %>
+                    
+                    <%= form_tag "/friends/#{@friend.id}", method: :delete do %>
+                        <%= hidden_field_tag :id, @friend.id %>
+                        <%= hidden_field_tag :friend_id, @user.id %>
+                        <%= submit_tag "Unfriend", class: "btn btn-success btn-sm" %>
+                    <%    end %>
+                    <% end %>
+                
+			</div>
+			<div class="col-lg-5">
+			    <button type="button" class="btn btn-danger btn-sm">Message</button>
+			</div>
+		</div>
+		<% end %>
+		<!-- END SIDEBAR BUTTONS -->
+    </div>
+</div>
+

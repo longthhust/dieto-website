@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << [:name,:age, :height, :weight]
     devise_parameter_sanitizer.for(:account_update) << [:name,:age, :height, :weight]
   end
+  
+  def show
+      @user = current_user
+  end
+  
 end

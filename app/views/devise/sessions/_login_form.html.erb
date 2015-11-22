@@ -6,6 +6,13 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <!--<form class="form-horizontal" role="form">-->
             <div class="form-group">
+                <div class="">
+                    <% flash.each do |type, message| %>
+                    <strong><%= message %></strong>
+                    <% end %>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
                 <div class="col-sm-8">
                     <!--<input class="form-control" id="inputEmail3" placeholder="Email" required="" type="email">-->

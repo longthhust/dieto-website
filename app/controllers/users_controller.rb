@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+    
     def show
         @user = User.find(params[:id])
-        @is_me = @user.id == current_user.id ? true: false
+        if @user
+            @is_me = @user.id == current_user.id ? true: false
+        end
         
         if !@is_me
             @status =  current_user.status_with @user.id

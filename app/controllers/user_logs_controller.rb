@@ -8,6 +8,8 @@ class UserLogsController < ApplicationController
   def index
     #@user_logs = UserLog.all
     @user_logs = current_user.user_logs
+    @user = current_user
+    @is_me = true
   end
 
   # GET /user_logs/1

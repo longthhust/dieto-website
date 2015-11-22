@@ -8,6 +8,8 @@ class UserGoalsController < ApplicationController
   def index
     #@user_goals = UserGoal.all
     @user_goals = current_user.user_goals
+    @user = current_user
+    @is_me =  true
   end
 
   # GET /user_goals/1
