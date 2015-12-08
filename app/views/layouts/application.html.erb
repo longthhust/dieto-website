@@ -10,6 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link href="stylesheets/pizza.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
+  <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
   <style>
     body { 
      background: url('http://www.planwallpaper.com/static/images/HD-Wallpapers1.jpeg') no-repeat center center fixed; 
@@ -43,9 +44,9 @@
           <%= render "users/form_show" %>
         </div>
         <div class="list-group">
-          <a href="<%= user_logs_path %>" class="list-group-item list-group-item-info">
+          <a href="<%= activity_logs_path %>" class="list-group-item list-group-item-info">
             <i class=" glyphicon glyphicon-th-list"></i>
-              ログ一覧
+              活動ログ一覧
           </a>
           <a href="<%= friends_path %>" class="list-group-item">	<i class="glyphicon glyphicon-user"></i><span class="badge"><% if @friends %><%=@friends.count%><% end %></span> フレンドス</a>
           <a href="#" class="list-group-item"><i class="glyphicon glyphicon-envelope"></i> メッセージ</a>

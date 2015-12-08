@@ -3,6 +3,9 @@ class UserLogsController < ApplicationController
   before_action :set_user_log, only: [:show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:show, :edit, :update, :destroy]
 
+  # hit count viewer
+  impressionist
+
   # GET /user_logs
   # GET /user_logs.json
   def index

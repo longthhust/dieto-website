@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+  # hit count viewer
+  impressionist
+  
   def home
     @user = current_user
     @is_me = true

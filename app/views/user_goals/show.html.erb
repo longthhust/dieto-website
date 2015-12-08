@@ -1,5 +1,6 @@
 <% weight_diff = (@user_goal.weight - @user_goal.user.weight).abs %>
 <% day_diff = (@user_goal.deadline - Date.today).to_i %>
+<% day_passed = (Date.today.mjd - @user_goal.created_at.to_date.mjd).to_i %>
 
 <div class="panel panel-primary">
   <!-- Default panel contents -->
@@ -12,6 +13,10 @@
 
   <!-- List group -->
   <ul class="list-group">
+    <li class="list-group-item list-group-item-warning">
+      <strong>タイトル:</strong>
+      <%= @user_goal.title %>
+    </li>
     <li class="list-group-item list-group-item-warning">
       <strong>目標:</strong>
       <%= @user_goal.weight %> kg
@@ -40,22 +45,31 @@
       <strong>目標達成まで:</strong>
       <%= weight_diff.round(2)%> kg
     </li>
-    <li class="list-group-item list-group-item-info">
-      <strong>締め切りまで:</strong>
-      <%= day_diff %> 日
-    </li>
-    <% if day_diff != 0 %>
-    <li class="list-group-item list-group-item-info">
-      
-        <strong>目標達成できるように、毎週 </strong> 
-      
-        <%= (weight_diff/day_diff*7).round(2) %> kg
-
-        <strong>で頑張りましょう！</strong>
-      
-    </li>
+    <% if day_diff >= 0 %>
+      <li class="list-group-item list-group-item-info">
+        <strong>締め切りまで:</strong>
+        <%= day_diff %> 日
+      </li>
+      <% if day_diff != 0 %>
+      <li class="list-group-item list-group-item-info">
+        
+          <strong>目標達成できるように、毎週 </strong> 
+        
+          <%= (weight_diff/day_diff*7).round(2) %> kg
+  
+          <strong>で頑張りましょう！</strong>
+        
+      </li>
+      <% end%>
+    <% else %>
+      <li class="list-group-item list-group-item-info">
+        <strong>おわりました！</strong>
+      </li>
     <% end %>
   </ul>
+  <% if day_diff >= 0 %>
+    <%= pie_chart({"Day of Goal" => day_passed, "Day left" => day_diff,  }) %>
+  <% end %>
   <div class="panel-footer">
     <div class="row">
         <div class="col-md-4 col-md-offset-8">

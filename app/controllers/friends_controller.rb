@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
-    
+    # hit count viewer
+    impressionist
     
     # GET /user_goals
     # GET /user_goals.json

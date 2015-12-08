@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    #hit count viewer
+    impressionist
     
     def show
         begin

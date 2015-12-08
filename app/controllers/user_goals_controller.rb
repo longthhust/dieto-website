@@ -3,6 +3,9 @@ class UserGoalsController < ApplicationController
   before_action :set_user_goal, only: [:show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:show, :edit, :update, :destroy]
 
+  #hit count viewer
+  # impressionist
+
   # GET /user_goals
   # GET /user_goals.json
   def index
@@ -43,7 +46,7 @@ class UserGoalsController < ApplicationController
     @friends =  Friend.where(user_id: current_user.id).try(:all)
     @user = current_user
     @is_me =  true
-
+    ActivityLog.create(user_id: current_user.id,content: @user_goal.title+ "という目標を作りました。")
     respond_to do |format|
       if @user_goal.save
         format.html { redirect_to @user_goal, notice: 'User goal was successfully created.' }
@@ -59,6 +62,7 @@ class UserGoalsController < ApplicationController
   # PATCH/PUT /user_goals/1.json
   def update
     @friends =  Friend.where(user_id: current_user.id).try(:all)
+    ActivityLog.create(user_id: current_user.id,content: params[:user_goal][:title] + "という目標を変更しました。")
     respond_to do |format|
       if @user_goal.update(user_goal_params)
         format.html { redirect_to @user_goal, notice: 'User goal was successfully updated.' }
@@ -74,6 +78,8 @@ class UserGoalsController < ApplicationController
   # DELETE /user_goals/1.json
   def destroy
     @friends =  Friend.where(user_id: current_user.id).try(:all)
+    # @goal = UserGoal.find(params[:id])
+    # ActivityLog.create(user_id: current_user.id,content: @goal.title + "という目標をs削除しました。")
     @user_goal.destroy
     respond_to do |format|
       format.html { redirect_to user_goals_url, notice: 'User goal was successfully destroyed.' }
@@ -89,7 +95,7 @@ class UserGoalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_goal_params
-      params.require(:user_goal).permit(:weight, :deadline, :comment)
+      params.require(:user_goal).permit(:weight, :deadline, :comment, :title)
     end
     
     def correct_user
