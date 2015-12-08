@@ -10,26 +10,39 @@ class UserGoalsController < ApplicationController
     @user_goals = current_user.user_goals
     @user = current_user
     @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id, accepted: false).try(:all)
   end
 
   # GET /user_goals/1
   # GET /user_goals/1.json
   def show
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # GET /user_goals/new
   def new
     @user_goal = UserGoal.new user: current_user
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # GET /user_goals/1/edit
   def edit
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # POST /user_goals
   # POST /user_goals.json
   def create
     @user_goal = UserGoal.new(user_goal_params.merge!({user: current_user}))
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
+    @user = current_user
+    @is_me =  true
 
     respond_to do |format|
       if @user_goal.save
@@ -45,6 +58,7 @@ class UserGoalsController < ApplicationController
   # PATCH/PUT /user_goals/1
   # PATCH/PUT /user_goals/1.json
   def update
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
     respond_to do |format|
       if @user_goal.update(user_goal_params)
         format.html { redirect_to @user_goal, notice: 'User goal was successfully updated.' }
@@ -59,6 +73,7 @@ class UserGoalsController < ApplicationController
   # DELETE /user_goals/1
   # DELETE /user_goals/1.json
   def destroy
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
     @user_goal.destroy
     respond_to do |format|
       format.html { redirect_to user_goals_url, notice: 'User goal was successfully destroyed.' }

@@ -1,2 +1,27 @@
-<p>This is our home page.</p>
-<p>ホームページです。</p>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+      <% t = Time.now.hour.to_i + 7 %>
+      <% if 6 <= t  && t < 10 %>
+      <%= 'おはようございます' %>
+      <% elsif 10 <= t && t < 18 %>
+      <%=   'くんにちは' %>
+      <% elsif 18 <= t && t < 23 || t < 6 %>
+      <%=  'こんばんは' %>
+      <% end %>
+  </div>
+  <div class="panel-body">
+    <p>ホームページです。</p>
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+          <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <%= link_to '目標一覧', user_goals_path, class: 'btn btn-success' %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

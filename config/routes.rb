@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :application
   resources :users, only: :show
-  resources :friends, only: [:create, :update, :destroy]
+  resources :friends
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -15,10 +15,10 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
+  match '/search',      to: 'users#search#',        via: 'post'
+  
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # get 'search/:id/' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

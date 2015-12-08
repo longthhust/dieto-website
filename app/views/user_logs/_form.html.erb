@@ -10,18 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label "現在の体重"%><br>
-    <%= f.number_field :weight %>
+  <div class="form-group">
+      <label for="weight">現在の体重</label>
+      <%= f.number_field :weight %>
   </div>
-  
-  <div class="field">
-    <%= f.label "コメント"%><br>
-    <%= f.text_area :comment %>
+  <div class="form-group">
+      <label for="comment">コメント</label>
+      <%= f.text_area :comment, class: 'form-control', placeholder: 'Your comment'%>
   </div>
-  
   <div class="actions">
-    <%= f.submit %>
+  <%= f.submit "作成", class: 'btn btn-block btn-primary btn-sm' %>
   </div>
 <% end %>

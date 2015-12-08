@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :user_logs
   has_many :user_goals
+  has_many :friends
   
   
   def status_with friend_id
@@ -15,7 +16,7 @@ class User < ActiveRecord::Base
         :requested
       end
     elsif friend = Friend.where(user_id: friend_id, friend_id:self.id).try(:first)
-      if friend_id.accepted
+      if friend.accepted
         :accepted
       else
         :be_requested
@@ -28,6 +29,11 @@ class User < ActiveRecord::Base
   def friends 
     Friend.where("user_id = ? or friend_id = ?", self.id, self.id)
   end
+  
+  def self.search_db(query)
+    # where(:username, query) -> This would return an exact match of the query
+    where("name LIKE ?", "%#{query}%") 
+  end  
     
 end
 

@@ -1,0 +1,10 @@
+ <tr>
+    <td><%= friend.user.name %></td>
+    <td><%= friend.user.name %></td>
+    <td><%= form_tag "/friends/#{friend.id}", method: :delete do %>
+        <%= hidden_field_tag :id, friend.id %>
+        <%= hidden_field_tag :friend_id, @user.id %>
+        <%= submit_tag "Unfriend", class: "btn btn-success btn-sm" %>
+        <%    end %>
+    </td>
+ </tr>

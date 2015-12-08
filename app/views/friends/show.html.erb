@@ -1,18 +1,25 @@
 <div class="panel panel-primary">
   <!-- Default panel contents -->
-  <div class="panel-heading">New User Log</div>
+  <div class="panel-heading">目標詳細</div>
   <div class="panel-body">
-    <%= render 'form' %>
+    <strong>ユーザー:</strong>
   </div>
+
+  
   <div class="panel-footer">
     <div class="row">
         <div class="col-md-4 col-md-offset-8">
           <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <%= link_to '戻る', user_logs_path, class: 'btn btn-success' %>
+              <%= link_to '編集' , class: 'btn btn-primary' %>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to '戻る', class: 'btn btn-success' %>
             </div>
           </div>
         </div>
     </div>
+    
   </div>
+  
 </div>

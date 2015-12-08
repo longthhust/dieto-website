@@ -5,6 +5,12 @@ body {
   background: #F1F3FA;
 }
 
+
+.navbar-default{
+  background-color: #0275D8
+}
+
+
 /* Profile container */
 .profile {
   margin: 20px 0;

@@ -1,0 +1,13 @@
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">ユーザー一覧</div>
+  <div class="panel-body">
+      
+  </div>
+  <ul class="list-group">
+          <% @articles.each do |article| %>
+            <li class="list-group-item"><%= link_to article.name, article %></li>
+          <% end %>
+      </ul>
+
+</div>

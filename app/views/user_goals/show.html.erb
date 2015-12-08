@@ -1,65 +1,75 @@
 <% weight_diff = (@user_goal.weight - @user_goal.user.weight).abs %>
 <% day_diff = (@user_goal.deadline - Date.today).to_i %>
 
-<p id="notice"><%= notice %></p>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">目標詳細</div>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
+    <strong>ユーザー:</strong>
+    <%= @user_goal.user.name %>
+  </div>
 
-<h1>目標詳細</h1>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-warning">
+      <strong>目標:</strong>
+      <%= @user_goal.weight %> kg
+    </li>
+    <li class="list-group-item list-group-item-warning">
+      <strong>作成された日:</strong>
+      <%= @user_goal.created_at.year%>年
+      <%= @user_goal.created_at.month%>月
+      <%= @user_goal.created_at.day%>日
+    </li>
+    <li class="list-group-item list-group-item-warning">
+      <strong>締め切り:</strong>
+      <%= @user_goal.deadline.year%>年
+      <%= @user_goal.deadline.month%>月
+      <%= @user_goal.deadline.day%>日
+    </li>
+    <li class="list-group-item list-group-item-warning">
+      <strong>コメント:</strong>
+      <%= @user_goal.comment %>
+    </li>
+    <li class="list-group-item list-group-item-info">
+      <strong>現在の体重:</strong>
+      <%= @user_goal.user.weight %> kg
+    </li>
+    <li class="list-group-item list-group-item-info">
+      <strong>目標達成まで:</strong>
+      <%= weight_diff.round(2)%> kg
+    </li>
+    <li class="list-group-item list-group-item-info">
+      <strong>締め切りまで:</strong>
+      <%= day_diff %> 日
+    </li>
+    <% if day_diff != 0 %>
+    <li class="list-group-item list-group-item-info">
+      
+        <strong>目標達成できるように、毎週 </strong> 
+      
+        <%= (weight_diff/day_diff*7).round(2) %> kg
 
-<p>
-  <strong>ユーザー:</strong>
-  <%= @user_goal.user.name %>
-</p>
-
-<p>
-  <strong>目標:</strong>
-  <%= @user_goal.weight %> kg
-</p>
-
-<p>
-  <strong>作成された日:</strong>
-  <%= @user_goal.created_at.year%>年
-  <%= @user_goal.created_at.month%>月
-  <%= @user_goal.created_at.day%>日
-</p>
-
-<p>
-  <strong>締め切り:</strong>
-  <%= @user_goal.deadline.year%>年
-  <%= @user_goal.deadline.month%>月
-  <%= @user_goal.deadline.day%>日
+        <strong>で頑張りましょう！</strong>
+      
+    </li>
+    <% end %>
+  </ul>
+  <div class="panel-footer">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+          <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <%= link_to '編集', edit_user_goal_path(@user_goal), class: 'btn btn-primary' %>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to '戻る', user_goals_path, class: 'btn btn-success' %>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+  </div>
   
-</p>
-
-<p>
-  <strong>コメント:</strong>
-  <%= @user_goal.comment %>
-</p>
-
-＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
-<p>
-  <strong>現在の体重:</strong>
-  <%= @user_goal.user.weight %> kg
-</p>
-
-<p>
-  <strong>目標達成まで:</strong>
-  <%= weight_diff.round(2)%> kg
-</p>
-
-<p>
-  <strong>締め切りまで:</strong>
-  <%= day_diff %> 日
-</p>
-
-<p>
-  <strong>目標達成できるように、毎週 </strong> 
-  <%= (weight_diff/day_diff*7).round(2) %> kg 
-  <strong>で頑張りましょう！</strong>
-</p>
-
-
-
-
-<%= link_to '編集', edit_user_goal_path(@user_goal) %> |
-<%= link_to '戻る', user_goals_path %>
+</div>

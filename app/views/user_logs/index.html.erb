@@ -1,22 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing User Logs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>ユーザー</th>
-      <th>現在の体重</th>
-      <th>コメント</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render @user_logs %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User log', new_user_log_path %>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">ユーザーログ一覧</div>
+  <% if @user_logs.empty? %>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
+    <p>まだ作成しません</p>
+  </div>
+  <% else %>
+     <table class="table">
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>現在の体重</th>
+          <th>コメント</th>
+          <th colspan="5"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <%= render @user_logs %>
+      </tbody>
+    </table>
+    <% end %>
+  
+  <div class="panel-footer">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+          <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <%= link_to 'New User log', new_user_log_path , class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
