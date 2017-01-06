@@ -1,0 +1,12 @@
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading"></div>
+  <div class="panel-body">
+    <p id="notice"></p>
+    <% if @error %>
+    <p>Not found!</p>
+    <% else %>
+    <p>i'm <%= @user.name %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div class="panel-heading"> <strong class="">Resend unlock instructions</strong>
+
+    </div>
+    <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <%= f.email_field :email, autofocus: true , class: 'form-control', placeholder: 'Your email address'%>
+    </div>
+    <div class="actions">
+    <%= f.submit "Resend unlock instructions", class: 'btn btn-block btn-danger btn-sm' %>
+    </div>
+    <% end %>
+    </div>
+    <div class="panel-footer"><%= render "devise/shared/links" %>
+    </div>
+</div>

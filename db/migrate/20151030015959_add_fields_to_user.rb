@@ -4,5 +4,6 @@ class AddFieldsToUser < ActiveRecord::Migration
     add_column :users, :age, :integer
     add_column :users, :height, :float
     add_column :users, :weight, :float
+    add_column :users, :gender, :string
   end
 end

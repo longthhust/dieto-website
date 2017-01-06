@@ -1,7 +1,22 @@
-<h1>目標編集</h1>
-
-<%= render 'form' %>
-
-<%= link_to '表示', @user_goal %> |
-<%= link_to '戻る', user_goals_path %>
-x
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">目標編集</div>
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+          <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <%= link_to '表示', @user_goal, class: 'btn btn-primary' %>
+            </div>
+            
+            <div class="btn-group" role="group">
+              <%= link_to '戻る', user_goals_path, class: 'btn btn-success' %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

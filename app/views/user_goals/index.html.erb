@@ -1,27 +1,39 @@
-<p id="notice"><%= notice %></p>
-
-<h1>目標一覧</h1>
-<% if @user_goals.empty? %>
-まだ作成しません
-<br>
-<% else %>
-<table>
-  <thead>
-    <tr>
-      <th>ユーザー</th>
-      <th>目標の体重</th>
-      <th>締め切り</th>
-      <th>コメント</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">目標一覧</div>
+  <% if @user_goals.empty? %>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
+    <p>まだ作成しません</p>
+  </div>
+  <% else %>
+     <table class="table">
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>目標の体重</th>
+          <th>締め切り</th>
+          <th>タイトル</th>
+          <th colspan="5"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <%= render @user_goals %>
+      </tbody>
+    </table>
+    <% end %>
+  <div class="panel-footer">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+          <div class="btn-group btn-group-xs btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <%= link_to '目標作成', new_user_goal_path, class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+  </div>
   
-  <tbody>
-    <%= render @user_goals %>
-  </tbody>
-</table>
-<% end %>
-
-<br>
-
-<%= link_to '目標作成', new_user_goal_path %>
+</div>

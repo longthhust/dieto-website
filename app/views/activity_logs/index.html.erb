@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading">ユーザーログ一覧</div>
+  <% if @activity_logs.empty? %>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
+    <p>まだ作成しません</p>
+  </div>
+  <% else %>
+     <table class="table">
+      <thead>
+        <tr>
+          <th colspan="1">ユーザー</th>
+          <th colspan="">活動</th>
+          <th colspan="">日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @activity_logs.each do |activity_log| %>
+          <tr>
+            <td><%= activity_log.user.name %></td>
+            <td><%= activity_log.content %></td>
+            <td><%= activity_log.created_at.strftime('%c') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+</div>

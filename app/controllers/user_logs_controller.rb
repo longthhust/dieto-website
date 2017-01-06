@@ -3,31 +3,49 @@ class UserLogsController < ApplicationController
   before_action :set_user_log, only: [:show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:show, :edit, :update, :destroy]
 
+  # hit count viewer
+  impressionist
+
   # GET /user_logs
   # GET /user_logs.json
   def index
     #@user_logs = UserLog.all
     @user_logs = current_user.user_logs
+    @user = current_user
+    @is_me = true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # GET /user_logs/1
   # GET /user_logs/1.json
   def show
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # GET /user_logs/new
   def new
     @user_log = UserLog.new user: current_user
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # GET /user_logs/1/edit
   def edit
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
   end
 
   # POST /user_logs
   # POST /user_logs.json
   def create
     @user_log = UserLog.new(user_log_params.merge!({user: current_user}))
+    @user = current_user
+    @is_me =  true
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
 
     respond_to do |format|
       if @user_log.save
@@ -44,6 +62,7 @@ class UserLogsController < ApplicationController
   # PATCH/PUT /user_logs/1
   # PATCH/PUT /user_logs/1.json
   def update
+    @friends =  Friend.where(user_id: current_user.id).try(:all)
     respond_to do |format|
       if @user_log.update(user_log_params)
         format.html { redirect_to @user_log, notice: 'User log was successfully updated.' }

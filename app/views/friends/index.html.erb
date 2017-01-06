@@ -1,0 +1,25 @@
+<div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading"> フレンド一覧</div>
+  <% if @friends.empty? %>
+  <div class="panel-body">
+    <p id="notice"><%= notice %></p>
+    <p>フレンドがありません</p>
+  </div>
+  <% else %>
+     <table class="table">
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>メール</th>
+          <th colspan="5"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <%= render @friends %>
+      </tbody>
+    </table>
+    <% end %>
+  
+</div>

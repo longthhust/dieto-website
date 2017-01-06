@@ -1,33 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>ダイエット</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="stylesheets/pizza.css" media="screen, projector, print" rel="stylesheet" type="text/css" />
+  <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
+  <style>
+    body { 
+     background: url('http://www.planwallpaper.com/static/images/HD-Wallpapers1.jpeg') no-repeat center center fixed; 
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+    }
+    
+    .panel-default {
+     opacity: 0.9;
+     margin-top:30px;
+    }
+    .form-group.last {
+     margin-bottom:0px;
+    }  
+  </style>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!--echo header-->
   
-<% if user_signed_in? %>
-<h3>Hello <%= current_user.email %>!</h3>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%= link_to "目標一覧", user_goals_path %>
-
-<h3>名前: <%= current_user.name %></h3>
-<h3>年齢: <%= current_user.age %> 歳</h3>
-<h3>体調: <%= current_user.height %> m</h3>
-<h3>体重: <%= current_user.weight %> kg</h3>
-
-<% else %>
-<%= link_to "ログイン", new_user_session_path %>
-<%= link_to "ユーザー登録", new_user_registration_path %>
-<% end %>
-<hr>
-<% flash.each do |type, message| %>
-  <strong><%= message %></strong>
-<% end %>
-<br>
-<%= yield %>
-
+  <%= render "layouts/header" %>
+  
+  <!--page content-->
+  <div class="container col-md-12">
+    <div class="row">
+      <% if user_signed_in? %>
+      <div class="col-lg-3">
+        <div class="thumbnail">
+          <%= render "users/form_show" %>
+        </div>
+        <div class="list-group">
+          <a href="<%= activity_logs_path %>" class="list-group-item list-group-item-info">
+            <i class=" glyphicon glyphicon-th-list"></i>
+              活動ログ一覧
+          </a>
+          <a href="<%= friends_path %>" class="list-group-item">	<i class="glyphicon glyphicon-user"></i><span class="badge"><% if @friends %><%=@friends.count%><% end %></span> フレンドス</a>
+          <a href="#" class="list-group-item"><i class="glyphicon glyphicon-envelope"></i> メッセージ</a>
+          <a href="<%= user_goals_path %>" class="list-group-item"><i class="glyphicon glyphicon-ok"></i> 目標一覧</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <!--<div class="thumbnail">-->
+          <%= yield %>
+        <!--</div>-->
+      </div>
+      <div class="col-lg-3">
+        <%= render "users/form_detail" %>
+      </div>
+      <% else %>
+        <% if controller_name == 'static_pages' %>
+        <div class="container">
+          <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                  <%= render "devise/sessions/login_form" %>
+              </div>
+          </div>
+      </div>
+        <% else %>
+        <%= yield %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!--echo footer-->
+  <%- if controller_name != 'sessions' && controller_name != 'registrations' %>
+  <%= render "layouts/footer"%>
+  <% end %>
+  
 </body>
 </html>
